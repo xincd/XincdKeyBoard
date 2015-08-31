@@ -1,0 +1,3 @@
+-keep class com.xcd.pinyin.PinyinDecoderService {
+  *;
+}
