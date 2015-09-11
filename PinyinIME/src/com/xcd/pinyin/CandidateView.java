@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Paint.FontMetricsInt;
@@ -384,8 +385,8 @@ public class CandidateView extends View {
             mCandidatesPaint.setTextSize(textSize);
             mFmiCandidates = mCandidatesPaint.getFontMetricsInt();
         }
-
-        mImeCandidateTextSize = textSize;
+      //设置字体大小
+        mImeCandidateTextSize = 35;//textSize;
         mRecommendedCandidateTextSize = textSize * 3 / 4;
         if (null == mDecInfo) {
             mCandidateTextSize = mImeCandidateTextSize;
@@ -530,12 +531,14 @@ public class CandidateView extends View {
             float itemTotalWidth = candidateWidth + 2 * candMargin;
 
             if (mActiveCandInPage == i && mEnableActiveHighlight) {
-                mActiveCellRect.set(xPos, getPaddingTop() + 1, xPos
-                        + itemTotalWidth, getHeight() - getPaddingBottom() - 1);
+                /*mActiveCellRect.set(xPos, getPaddingTop() + 1, xPos
+                        + itemTotalWidth, getHeight() - getPaddingBottom() - 1);*/
+            	/*mActiveCellRect.set(xPos+5, getPaddingTop() + 1, xPos
+                        + itemTotalWidth, getHeight() - getPaddingBottom() - 5);
                 mActiveCellDrawable.setBounds((int) mActiveCellRect.left,
                         (int) mActiveCellRect.top, (int) mActiveCellRect.right,
                         (int) mActiveCellRect.bottom);
-                mActiveCellDrawable.draw(canvas);
+                mActiveCellDrawable.draw(canvas);*/
             }
 
             if (mCandRects.size() < pSize) mCandRects.add(new RectF());
@@ -555,15 +558,17 @@ public class CandidateView extends View {
                         mContentWidth - xPos - centerOffset);
             }
             if (mActiveCandInPage == i && mEnableActiveHighlight) {
-                mCandidatesPaint.setColor(mActiveCandidateColor);
+//                mCandidatesPaint.setColor(mActiveCandidateColor);
+            	mCandidatesPaint.setColor(Color.WHITE);//字体颜色设置
             } else {
-                mCandidatesPaint.setColor(mNormalCandidateColor);
+//                mCandidatesPaint.setColor(mNormalCandidateColor);
+                mCandidatesPaint.setColor(Color.parseColor("#609eee"));
             }
             canvas.drawText(cand, xPos + centerOffset, yPos,
                     mCandidatesPaint);
 
             // Candidate and right margin
-            xPos += candidateWidth + candMargin;
+            xPos += candidateWidth + candMargin+2;//控制字间距
 
             // Draw the separator between candidates.
             xPos += drawVerticalSeparator(canvas, xPos);
@@ -591,11 +596,12 @@ public class CandidateView extends View {
     }
 
     private float drawVerticalSeparator(Canvas canvas, float xPos) {
-        mSeparatorDrawable.setBounds((int) xPos, getPaddingTop(), (int) xPos
+       /* mSeparatorDrawable.setBounds((int) xPos, getPaddingTop(), (int) xPos
                 + mSeparatorDrawable.getIntrinsicWidth(), getMeasuredHeight()
                 - getPaddingBottom());
         mSeparatorDrawable.draw(canvas);
-        return mSeparatorDrawable.getIntrinsicWidth();
+        return mSeparatorDrawable.getIntrinsicWidth();*/
+    	return 0;
     }
 
     private int mapToItemInPage(int x, int y) {

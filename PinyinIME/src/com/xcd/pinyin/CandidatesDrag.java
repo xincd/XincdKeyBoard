@@ -1,12 +1,13 @@
 package com.xcd.pinyin;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.view.View.OnTouchListener;
 
 public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
 
@@ -17,8 +18,9 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
     private Environment mEnvironment;
     
     private ImageView mDragImageView;
+    private AnimationDrawable animationDrawable;
     
-    private ImageView mDragPressImageView;
+//    private ImageView mDragPressImageView;
     
     public CandidatesDrag(Context context) {
         super(context);
@@ -35,11 +37,14 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
     public void initialize()
     {
         mDragImageView = (ImageView) findViewById(R.id.test_image);
-        mDragPressImageView = (ImageView) findViewById(R.id.test_image_press);
+//        mDragPressImageView = (ImageView) findViewById(R.id.test_image_press);
         mDragImageView.setVisibility(View.VISIBLE);
-        mDragPressImageView.setVisibility(View.GONE);
+//        mDragPressImageView.setVisibility(View.GONE);
 //        mDragImageView.setOnTouchListener(this);
 //        mDragImageView.setImageResource(R.drawable.float_mode_move_button_normal);
+        
+        animationDrawable = (AnimationDrawable) mDragImageView
+				.getBackground();
     }
     
     public void updateImage(boolean flag)
@@ -47,12 +52,12 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
         if(flag)
         {
             mDragImageView.setVisibility(View.GONE);
-            mDragPressImageView.setVisibility(View.VISIBLE);
+//            mDragPressImageView.setVisibility(View.VISIBLE);
         }
         else
         {
             mDragImageView.setVisibility(View.VISIBLE);
-            mDragPressImageView.setVisibility(View.GONE);
+//            mDragPressImageView.setVisibility(View.GONE);
         }
     }
     
@@ -98,6 +103,14 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
             yDown = (int) event.getRawY();
             yMoveRowold = 0;
             xMoveRowold = 0;
+            
+            mDragImageView.setBackgroundResource(R.drawable.move_anim);
+			
+			// 获取AnimationDrawable对象 AnimationDrawable
+			 animationDrawable = (AnimationDrawable) mDragImageView
+			 .getBackground(); // 开始或者继续动画播放
+			 animationDrawable.start();
+			 
             break;
         case MotionEvent.ACTION_MOVE:
 //            mDragImageView.setImageResource(R.drawable.float_mode_move_button_pressed);
@@ -125,11 +138,12 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
             if(mPinyinIME != null)
             {
                 mPinyinIME.updateKeyBoardView(x2,y2);
-                updateImage(true);
+//                updateImage(true);
             }
                 break;
         case MotionEvent.ACTION_UP:
-            updateImage(false);
+        	animationDrawable.stop();
+//            updateImage(false);
 //            mDragImageView.setImageResource(R.drawable.float_mode_move_button_normal);
             break;
 

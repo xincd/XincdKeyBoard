@@ -21,6 +21,7 @@ import com.xcd.pinyin.R;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetricsInt;
 import android.graphics.drawable.Drawable;
@@ -112,7 +113,7 @@ public class ComposingView extends View {
         super(context, attrs);
 
         Resources r = context.getResources();
-        mHlDrawable = r.getDrawable(R.drawable.composing_hl_bg);
+        mHlDrawable = r.getDrawable(R.drawable.composing_hl_bg);//±³¾°ÑÕÉ«Í¼
         mCursor = r.getDrawable(R.drawable.composing_area_cursor);
 
         mStrColor = r.getColor(R.color.composing_color);
@@ -143,7 +144,6 @@ public class ComposingView extends View {
     public void setDecodingInfo(PinyinIME.DecodingInfo decInfo,
             PinyinIME.ImeState imeStatus) {
         mDecInfo = decInfo;
-
         if (PinyinIME.ImeState.STATE_INPUT == imeStatus) {
             mComposingStatus = ComposingStatus.SHOW_PINYIN;
             mDecInfo.moveCursorToEdge(false);
@@ -165,7 +165,6 @@ public class ComposingView extends View {
     public boolean moveCursor(int keyCode) {
         if (keyCode != KeyEvent.KEYCODE_DPAD_LEFT
                 && keyCode != KeyEvent.KEYCODE_DPAD_RIGHT) return false;
-
         if (ComposingStatus.EDIT_PINYIN == mComposingStatus) {
             int offset = 0;
             if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT)
@@ -195,7 +194,6 @@ public class ComposingView extends View {
         float width;
         int height;
         height = mFmi.bottom - mFmi.top + getPaddingTop() + getPaddingBottom();
-
         if (null == mDecInfo) {
             width = 0;
         } else {
@@ -219,25 +217,25 @@ public class ComposingView extends View {
             drawForPinyin(canvas);
             return;
         }
-
         float x, y;
         x = getPaddingLeft() + LEFT_RIGHT_MARGIN;
         y = -mFmi.top + getPaddingTop();
 
-        mPaint.setColor(mStrColorHl);
-        mHlDrawable.setBounds(getPaddingLeft(), getPaddingTop(), getWidth()
-                - getPaddingRight(), getHeight() - getPaddingBottom());
-        mHlDrawable.draw(canvas);
-
+        	//ÊäÈë×ÖÄ¸µÄÑÕÉ«ÉèÖÃ
+//        mPaint.setColor(mStrColorHl);
+        mPaint.setColor(mStrColor);
+//        mHlDrawable.setBounds(getPaddingLeft(), getPaddingTop(), getWidth()
+//                - getPaddingRight(), getHeight() - getPaddingBottom());
+//        mHlDrawable.draw(canvas);
         String splStr = mDecInfo.getOrigianlSplStr().toString();
         System.out.println("wanghui=============ComposingView cmpsStr:="+splStr);
         canvas.drawText(splStr, 0, splStr.length(), x, y, mPaint);
     }
 
     private void drawCursor(Canvas canvas, float x) {
-        mCursor.setBounds((int) x, getPaddingTop(), (int) x
-                + mCursor.getIntrinsicWidth(), getHeight() - getPaddingBottom());
-        mCursor.draw(canvas);
+//        mCursor.setBounds((int) x, getPaddingTop(), (int) x
+//                + mCursor.getIntrinsicWidth(), getHeight() - getPaddingBottom());
+//        mCursor.draw(canvas);
     }
 
     private void drawForPinyin(Canvas canvas) {
@@ -246,7 +244,6 @@ public class ComposingView extends View {
         y = -mFmi.top + getPaddingTop();
 
         mPaint.setColor(mStrColor);
-
         int cursorPos = mDecInfo.getCursorPosInCmpsDisplay();
         int cmpsPos = cursorPos;
         String cmpsStr = mDecInfo.getComposingStrForDisplay();
