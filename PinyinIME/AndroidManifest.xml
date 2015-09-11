@@ -19,7 +19,7 @@
     android:versionName="1.0.0" >
     
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="14" />
 
         <original-package android:name="com.xcd.pinyin" />

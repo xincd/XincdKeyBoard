@@ -48,9 +48,9 @@ public class Environment {
      * The height of the candidates area for portrait mode. It is relative to
      * screen height.
      */
-    private static final float CANDIDATES_AREA_HEIGHT_RATIO_PORTRAIT = 0.070f;
+    private static final float CANDIDATES_AREA_HEIGHT_RATIO_PORTRAIT = 0.05f;//0.070f;
     
-    private static final float CANDIDATES_VIEW_HEIGHT_RATIO_PORTRAIT = 0.13f;
+    private static final float CANDIDATES_VIEW_HEIGHT_RATIO_PORTRAIT = 0.10f;//0.13f;
 
     /**
      * The height of the candidates area for portrait mode. It is relative to
@@ -134,7 +134,6 @@ public class Environment {
 //            mScreenWidth = (int)(d.getWidth() * KEY_WIDTH_RATIO_PORTRAIT);
             mScreenWidth = d.getWidth();
             mScreenHeight = d.getHeight();
-
             int scale;
             if (mScreenHeight > mScreenWidth) {
                 mKeyHeight = (int) (mScreenHeight * KEY_HEIGHT_RATIO_PORTRAIT);
@@ -242,10 +241,15 @@ public class Environment {
     }
 
     public int getBalloonTextSize(boolean isFunctionKey) {
-        if (isFunctionKey) {
+        /*if (isFunctionKey) {
             return mFunctionBalloonTextSize;
         } else {
             return mNormalBalloonTextSize;
+        }*/
+    	if (isFunctionKey) {
+            return 50;//78
+        } else {
+            return 80;//120
         }
     }
 

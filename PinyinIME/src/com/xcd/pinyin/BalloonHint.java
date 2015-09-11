@@ -144,6 +144,7 @@ public class BalloonHint extends PopupWindow {
             boolean textBold, int textColor, int width, int height) {
         mBalloonView.setTextConfig(label, textSize, textBold, textColor);
         setBalloonSize(width, height);
+        System.out.println("wanghui=========setBalloonConfig width:="+width+" height:="+height+" textSize:="+textSize);
     }
 
     /**
@@ -160,6 +161,7 @@ public class BalloonHint extends PopupWindow {
     public void setBalloonConfig(Drawable icon, int width, int height) {
         mBalloonView.setIcon(icon);
         setBalloonSize(width, height);
+        System.out.println("wanghui=========setBalloonConfig width:="+width+" height:="+height);
     }
 
 
@@ -251,6 +253,7 @@ public class BalloonHint extends PopupWindow {
                 + getPaddingBottom();
         setWidth(newWidth);
         setHeight(newHeight);
+        System.out.println("wanghui=========setBalloonSize width:="+newWidth+" height:="+newWidth);
 
         // If update() is called to update both size and position, the system
         // will first MOVE the PopupWindow to the new position, and then
@@ -368,7 +371,7 @@ public class BalloonHint extends PopupWindow {
             mPaintLabel = new Paint();
             mPaintLabel.setColor(mLabeColor);
             mPaintLabel.setAntiAlias(true);
-            mPaintLabel.setFakeBoldText(true);
+//            mPaintLabel.setFakeBoldText(true);
             mFmi = mPaintLabel.getFontMetricsInt();
         }
 
@@ -400,8 +403,8 @@ public class BalloonHint extends PopupWindow {
                 return;
             }
 
-            int measuredWidth = getPaddingLeft() + getPaddingRight();
-            int measuredHeight = getPaddingTop() + getPaddingBottom();
+            int measuredWidth = getPaddingLeft()+getPaddingRight();
+            int measuredHeight= getPaddingTop()+getPaddingBottom();
             if (null != mIcon) {
                 measuredWidth += mIcon.getIntrinsicWidth();
                 measuredHeight += mIcon.getIntrinsicHeight();
@@ -412,7 +415,7 @@ public class BalloonHint extends PopupWindow {
             if (widthSize > measuredWidth || widthMode == MeasureSpec.AT_MOST) {
                 measuredWidth = widthSize;
             }
-
+//
             if (heightSize > measuredHeight
                     || heightMode == MeasureSpec.AT_MOST) {
                 measuredHeight = heightSize;

@@ -18,6 +18,7 @@ package com.xcd.pinyin;
 
 import com.xcd.pinyin.R;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.inputmethodservice.InputMethodService;
@@ -336,7 +337,8 @@ public class SkbContainer extends RelativeLayout implements OnTouchListener {
         return mMajorView;
     }
 
-    private void popupSymbols() {
+    @SuppressLint("WrongCall")
+	private void popupSymbols() {
         int popupResId = mSoftKeyDown.getPopupResId();
         if (popupResId > 0) {
             int skbContainerWidth = getWidth();

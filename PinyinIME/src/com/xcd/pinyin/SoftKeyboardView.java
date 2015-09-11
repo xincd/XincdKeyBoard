@@ -250,6 +250,7 @@ public class SoftKeyboardView extends View {
             // Prepare the on-key balloon
             int keyXMargin = mSoftKeyboard.getKeyXMargin();
             int keyYMargin = mSoftKeyboard.getKeyYMargin();
+            System.out.println("wanghui=======eeeee===keyXMargin:="+keyXMargin+"mSoftKeyDown.width() :="+mSoftKeyDown.width());
             desired_width = mSoftKeyDown.width() - 2 * keyXMargin;
             desired_height = mSoftKeyDown.height() - 2 * keyYMargin;
             textSize = env
@@ -279,16 +280,20 @@ public class SoftKeyboardView extends View {
         }
 
         // Prepare the popup balloon
-        if (mSoftKeyDown.needBalloon()) {
+        if (mSoftKeyDown.needBalloon()) {//按钮弹出框及字体大小设置
             Drawable balloonBg = mSoftKeyboard.getBalloonBackground();
             mBalloonPopup.setBalloonBackground(balloonBg);
-
-            desired_width = mSoftKeyDown.width() + env.getKeyBalloonWidthPlus();
-            desired_height = mSoftKeyDown.height()
-                    + env.getKeyBalloonHeightPlus();
+//            desired_width = mSoftKeyDown.width() + env.getKeyBalloonWidthPlus();
+//            desired_height = mSoftKeyDown.height()+env.getKeyBalloonWidthPlus();
+            desired_width = mSoftKeyDown.width()+10;
+            desired_height = mSoftKeyDown.height()+10;
+            boolean flag = SoftKeyType.KEYTYPE_ID_NORMAL_KEY != mSoftKeyDown.mKeyType.mKeyTypeId;
+            System.out.println("syy===istrue="+flag);
+            System.out.println("wanghui=======eeeee===desired_width:="+desired_width+"env.getKeyBalloonWidthPlus() :="+env.getKeyBalloonWidthPlus());
             textSize = env
                     .getBalloonTextSize(SoftKeyType.KEYTYPE_ID_NORMAL_KEY != mSoftKeyDown.mKeyType.mKeyTypeId);
             Drawable iconPopup = mSoftKeyDown.getKeyIconPopup();
+            System.out.println("wanghui=======eeeee===desired_width:="+desired_width+"env.getKeyBalloonWidthPlus() :="+env.getKeyBalloonWidthPlus()+" textSize:="+textSize);
             if (null != iconPopup) {
                 mBalloonPopup.setBalloonConfig(iconPopup, desired_width,
                         desired_height);

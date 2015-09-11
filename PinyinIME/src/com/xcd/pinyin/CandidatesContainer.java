@@ -212,7 +212,7 @@ public class CandidatesContainer extends RelativeLayout implements
         if (null == decInfo) return;
         mDecInfo = decInfo;
         mCurrentPage = 0;
-
+        
         if (decInfo.isCandidatesListEmpty()) {
             mSettingKeyboardView.setVisibility(View.VISIBLE);
             this.setVisibility(View.GONE);
