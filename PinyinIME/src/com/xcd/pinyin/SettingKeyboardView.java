@@ -37,14 +37,11 @@ public class SettingKeyboardView extends RelativeLayout
     
     @Override
     protected void onFinishInflate() {
-        // TODO Auto-generated method stub
         mHideKeyBoardImage = (ImageView) findViewById(R.id.hide_keyboard);
         mHideKeyBoardImage.setOnClickListener(new OnClickListener() {
             
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                System.out.println("wanghui===========mHideButton");
                 if(mPinyinIME != null)
                 {
                     mPinyinIME.hideWindow();

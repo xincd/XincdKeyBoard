@@ -33,16 +33,16 @@ public class Environment {
     /**
      * The key height for portrait mode. It is relative to the screen height.
      */
-    private static final float KEY_HEIGHT_RATIO_PORTRAIT = 0.065f;
+    private static final float KEY_HEIGHT_RATIO_PORTRAIT = 0.045f;
 
-    private static final float KEY_WIDTH_RATIO_PORTRAIT = 0.8f;
+    private static final float KEY_WIDTH_RATIO_PORTRAIT = 0.6f;
     
     private static final float KEY_WIDTH_CANDIDATEDRAG = 0.1f;
 
     /**
      * The key height for landscape mode. It is relative to the screen height.
      */
-    private static final float KEY_HEIGHT_RATIO_LANDSCAPE = 0.01f;
+    private static final float KEY_HEIGHT_RATIO_LANDSCAPE = 0.06f;
 
     /**
      * The height of the candidates area for portrait mode. It is relative to
@@ -62,7 +62,7 @@ public class Environment {
      * How much should the balloon width be larger than width of the real key.
      * It is relative to the smaller one of screen width and height.
      */
-    private static final float KEY_BALLOON_WIDTH_PLUS_RATIO = 0.08f;
+    private static final float KEY_BALLOON_WIDTH_PLUS_RATIO = 0.6f;
 
     /**
      * How much should the balloon height be larger than that of the real key.
@@ -74,33 +74,33 @@ public class Environment {
      * The text size for normal keys. It is relative to the smaller one of
      * screen width and height.
      */
-    private static final float NORMAL_KEY_TEXT_SIZE_RATIO = 0.055f;
+    private static final float NORMAL_KEY_TEXT_SIZE_RATIO = 0.020f;
 
     /**
      * The text size for function keys. It is relative to the smaller one of
      * screen width and height.
      */
-    private static final float FUNCTION_KEY_TEXT_SIZE_RATIO = 0.040f;
+    private static final float FUNCTION_KEY_TEXT_SIZE_RATIO = 0.020f;
 
     /**
      * The text size balloons of normal keys. It is relative to the smaller one
      * of screen width and height.
      */
-    private static final float NORMAL_BALLOON_TEXT_SIZE_RATIO = 0.10f;
+    private static final float NORMAL_BALLOON_TEXT_SIZE_RATIO = 0.020f;
 
     /**
      * The text size balloons of function keys. It is relative to the smaller
      * one of screen width and height.
      */
-    private static final float FUNCTION_BALLOON_TEXT_SIZE_RATIO = 0.065f;
+    private static final float FUNCTION_BALLOON_TEXT_SIZE_RATIO = 0.020f;
 
     /**
      * The configurations are managed in a singleton.
      */
     private static Environment mInstance;
 
-    private int mScreenWidth;
-    private int mScreenHeight;
+    public int mScreenWidth;
+    public int mScreenHeight;
     private int mKeyHeight;
     private int mSkbWidth;
     private int mCandidatesAreaHeight;
@@ -241,16 +241,16 @@ public class Environment {
     }
 
     public int getBalloonTextSize(boolean isFunctionKey) {
-        /*if (isFunctionKey) {
+        if (isFunctionKey) {
             return mFunctionBalloonTextSize;
         } else {
             return mNormalBalloonTextSize;
-        }*/
-    	if (isFunctionKey) {
-            return 50;//78
-        } else {
-            return 80;//120
         }
+//    	if (isFunctionKey) {
+//            return 50;//78
+//        } else {
+//            return 80;//120
+//        }
     }
 
     public boolean hasHardKeyboard() {

@@ -269,8 +269,6 @@ public class SkbContainer extends RelativeLayout implements OnTouchListener {
         int keyHeight = mEnvironment.getKeyHeight();
         int skbHeight = mEnvironment.getSkbHeight();
 
-	System.out.println("wanghui==========updateSkbLayout screenWidth:="+screenWidth+" skbHeight:="+skbHeight);
-
         Resources r = mContext.getResources();
         if (null == mSkbFlipper) {
             mSkbFlipper = (ViewFlipper) findViewById(R.id.alpha_floatable);
@@ -423,16 +421,12 @@ public class SkbContainer extends RelativeLayout implements OnTouchListener {
         Environment env = Environment.getInstance();
         int measuredWidth = env.getSkbWidth();
         int measuredHeight = getPaddingTop();
-        System.out.println("wanghui===============00 onMeasure measuredHeight:="+measuredHeight+" measuredWidth:="+measuredWidth);
         int height = (int)(env.getSkbHeight()/4);
         measuredHeight += env.getSkbHeight();
-        System.out.println("wanghui===============11 onMeasure measuredHeight:="+measuredHeight+" env.getSkbHeight():="+env.getSkbHeight());
-        System.out.println("wanghui===============22onMeasure measuredHeight:="+measuredHeight+" height:="+height);
         widthMeasureSpec = MeasureSpec.makeMeasureSpec(measuredWidth,
                 MeasureSpec.EXACTLY);
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(measuredHeight,
                 MeasureSpec.EXACTLY);
-        System.out.println("wanghui===============22onMeasure heightMeasureSpec:="+heightMeasureSpec);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 

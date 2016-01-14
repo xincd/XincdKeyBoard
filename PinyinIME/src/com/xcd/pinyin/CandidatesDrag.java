@@ -66,9 +66,7 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
         Environment env = Environment.getInstance();
         int measuredWidth = env.getCandidateDragViewWidht();
         int measuredHeight = getPaddingTop();
-        System.out.println("wanghui=============== 00 CandidatesDrag measuredHeight:="+measuredHeight);
         measuredHeight += env.getCandidateDragViewHight();
-        System.out.println("wanghui=============== 11 CandidatesDrag measuredHeight:="+measuredHeight+" env.getHeightForCandidates():="+env.getmFloatModePrentHeight());
         widthMeasureSpec = MeasureSpec.makeMeasureSpec(measuredWidth,
                 MeasureSpec.EXACTLY);
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(measuredHeight,
@@ -80,8 +78,25 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
     public void setPinyinIME(PinyinIME pinyinIME)
     {
         this.mPinyinIME = pinyinIME;
-        System.out.println("wanghui=============3333333333:mPinyinIME:="+mPinyinIME);
     }
+    /**
+     * 记录手指按下时在小悬浮窗的View上的横坐标的值
+     */
+    private float xInView;
+
+    /**
+     * 记录手指按下时在小悬浮窗的View上的纵坐标的值
+     */
+    private float yInView;
+    /**
+     * 记录当前手指位置在屏幕上的横坐标值
+     */
+    private float xInScreen;
+
+    /**
+     * 记录当前手指位置在屏幕上的纵坐标值
+     */
+    private float yInScreen;
     int XmoveRow = 0,YmoveRow = 0,XDownRow = 0,YDownRow = 0,yMoveRowold = 0,xMoveRowold = 0,xDown = 0,yDown = 0;
     
     @Override
@@ -96,16 +111,16 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
 //        }
         switch (event.getAction()) {
         case MotionEvent.ACTION_DOWN:
+            xInView = event.getX();
+            yInView = event.getY();
 //            mDragImageView.setImageResource(R.drawable.float_mode_move_button_pressed);
             XDownRow = (int) event.getRawX();
             YDownRow = (int) event.getRawY();
             xDown = (int) event.getX();
-            yDown = (int) event.getRawY();
+            yDown = (int) event.getY();
             yMoveRowold = 0;
             xMoveRowold = 0;
-            
             mDragImageView.setBackgroundResource(R.drawable.move_anim);
-			
 			// 获取AnimationDrawable对象 AnimationDrawable
 			 animationDrawable = (AnimationDrawable) mDragImageView
 			 .getBackground(); // 开始或者继续动画播放
@@ -113,7 +128,8 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
 			 
             break;
         case MotionEvent.ACTION_MOVE:
-//            mDragImageView.setImageResource(R.drawable.float_mode_move_button_pressed);
+            xInScreen = event.getRawX();
+            yInScreen = event.getRawY();
             int y1 = 0;
             int y2 = 0;
             int x1 = 0;
@@ -130,21 +146,42 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
             {
                 y1 = -y;
             }
-            y2 = y1 - yMoveRowold;
-            yMoveRowold = y1;
-            x2 = x - xMoveRowold;
-            xMoveRowold = x;
-            System.out.println("wanghui======= CandidatesDrag onTouchEvent ACTION_MOVE MotionEvent======222=CandidateView=y2:="+y2+" y:="+y+"y1:="+y1+" x2:="+x2+" mPinyinIME:="+mPinyinIME);
-            if(mPinyinIME != null)
-            {
-                mPinyinIME.updateKeyBoardView(x2,y2);
-//                updateImage(true);
-            }
-                break;
+            System.out.println("wanghui=======XmoveRow:="+XmoveRow+"  XDownRow:="+XDownRow+" xDown:="+xDown);
+//            if(mEnvironment.mScreenHeight > mEnvironment.mScreenWidth)
+//            {
+                int skbWidth = (int)(mEnvironment.getSkbWidth()/2);
+                if(XmoveRow > XDownRow)
+                {
+                    if((XmoveRow + skbWidth + 5) < mEnvironment.mScreenWidth)
+                    {
+                        y2 = y1 - yMoveRowold;
+                        yMoveRowold = y1;
+                        x2 = x - xMoveRowold;
+                        xMoveRowold = x;
+                        if(mPinyinIME != null)
+                        {
+                            mPinyinIME.updateKeyBoardView(x2,y2);
+                        }
+                    }
+                }
+                else
+                {
+                    if(((XmoveRow+5) - skbWidth) > 0)
+                    {
+                        y2 = y1 - yMoveRowold;
+                        yMoveRowold = y1;
+                        x2 = x - xMoveRowold;
+                        xMoveRowold = x;
+                        if(mPinyinIME != null)
+                        {
+                            mPinyinIME.updateKeyBoardView(x2,y2);
+                        }
+                    }
+                }
+//            }
+            break;
         case MotionEvent.ACTION_UP:
         	animationDrawable.stop();
-//            updateImage(false);
-//            mDragImageView.setImageResource(R.drawable.float_mode_move_button_normal);
             break;
 
         default:
@@ -157,8 +194,7 @@ public class CandidatesDrag extends RelativeLayout implements OnTouchListener{
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            if (v == mDragImageView) {
-            }
+            System.out.println("wanghui========="+event.getX());
         }
         return true;
     }

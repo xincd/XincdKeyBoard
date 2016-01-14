@@ -253,9 +253,7 @@ public class CandidatesContainer extends RelativeLayout implements
         Environment env = Environment.getInstance();
         int measuredWidth = env.getSkbWidth();
         int measuredHeight = getPaddingTop();
-        System.out.println("wanghui=============== 00 CandidatesContainer measuredHeight:="+measuredHeight);
         measuredHeight += env.getHeightForCandidates();
-        System.out.println("wanghui=============== 11 CandidatesContainer measuredHeight:="+measuredHeight+" env.getHeightForCandidates():="+env.getHeightForCandidates());
         widthMeasureSpec = MeasureSpec.makeMeasureSpec(measuredWidth,
                 MeasureSpec.EXACTLY);
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(measuredHeight,

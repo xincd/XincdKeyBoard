@@ -722,7 +722,6 @@ public class CandidateView extends View {
         x = (int) event.getX();
         y = (int) event.getY();
         int XDownRow = (int) event.getRawX();
-        System.out.println("wanghui============CandidateView onTouchEventReal XDownRow:="+XDownRow+" x:="+x);
         if (mGestureDetector.onTouchEvent(event)) {
             mTimer.removeTimer();
             mBalloonHint.delayedDismiss(0);

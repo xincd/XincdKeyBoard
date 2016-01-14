@@ -35,9 +35,7 @@ public class FloatModePrentView extends RelativeLayout{
         Environment env = Environment.getInstance();
         int measuredWidth = env.getSkbWidth();
         int measuredHeight = getPaddingTop();
-        System.out.println("wanghui=============== 00 CandidatesDrag measuredHeight:="+measuredHeight);
         measuredHeight += env.getmFloatModePrentHeight();
-        System.out.println("wanghui=============== 11 CandidatesDrag measuredHeight:="+measuredHeight+" env.getHeightForCandidates():="+env.getmFloatModePrentHeight());
         widthMeasureSpec = MeasureSpec.makeMeasureSpec(measuredWidth,
                 MeasureSpec.EXACTLY);
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(measuredHeight,

@@ -966,7 +966,6 @@ public class PinyinIME extends InputMethodService {
 
         mCandidatesContainer.setPinIME(this);
         CandidateView view = mCandidatesContainer.getCandidateView();
-        System.out.println("wanghui=============3333333333:view:="+view);
         if(view != null)
         {
             view.setPinyinIME(this);
@@ -1156,7 +1155,6 @@ public class PinyinIME extends InputMethodService {
         Window window = PinyinIME.this.getWindow().getWindow();
 //        int height = (int) (mEnvironment.getScreenHeight()*0.2);
         window.setLayout(mEnvironment.getSkbWidth(), mEnvironment.getSkbHeight()+mEnvironment.getmFloatModePrentHeight());
-        System.out.println("wanghui==============updateKeyBoardView mEnvironment.getSkbHeight():="+mEnvironment.getSkbHeight()+mEnvironment.getHeightForCandidates());
         WindowManager.LayoutParams lp = window.getAttributes();
         //lp.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
          //       | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
@@ -1176,14 +1174,16 @@ public class PinyinIME extends InputMethodService {
         WindowManager.LayoutParams lp = window.getAttributes();
         moveY = moveY+y;
         moveX = moveX+x;
-        if(moveX < -110)
-        {
-            moveX = -110;
-        }
-        else if(moveX > 110)
-        {
-            moveX = 110;
-        }
+        mEnvironment.getSkbWidth();
+        System.out.println("wanghui===========moveX:="+moveX);
+//        if(moveX < -110)
+//        {
+//            moveX = -110;
+//        }
+//        else if(moveX > 110)
+//        {
+//            moveX = 110;
+//        }
         int mpaddTop = mEnvironment.getScreenHeight() - mEnvironment.getmFloatModePrentHeight()-mEnvironment.getSkbHeight() - 50;
         if(moveY < 0)
         {
@@ -1809,7 +1809,6 @@ public class PinyinIME extends InputMethodService {
             try {
                 String retStr = mFullSent.substring(0, mFixedLen);
                 retStr += mCandidatesList.get(activeCandPos);
-                System.out.println("wanghui===========PinyinIME retStr:="+retStr);
                 return retStr;
             } catch (Exception e) {
                 return "";

@@ -228,7 +228,6 @@ public class ComposingView extends View {
 //                - getPaddingRight(), getHeight() - getPaddingBottom());
 //        mHlDrawable.draw(canvas);
         String splStr = mDecInfo.getOrigianlSplStr().toString();
-        System.out.println("wanghui=============ComposingView cmpsStr:="+splStr);
         canvas.drawText(splStr, 0, splStr.length(), x, y, mPaint);
     }
 
@@ -247,7 +246,6 @@ public class ComposingView extends View {
         int cursorPos = mDecInfo.getCursorPosInCmpsDisplay();
         int cmpsPos = cursorPos;
         String cmpsStr = mDecInfo.getComposingStrForDisplay();
-        System.out.println("wanghui=============ComposingView cmpsStr:="+cmpsStr);
         int activeCmpsLen = mDecInfo.getActiveCmpsDisplayLen();
         if (cursorPos > activeCmpsLen) cmpsPos = activeCmpsLen;
         canvas.drawText(cmpsStr, 0, cmpsPos, x, y, mPaint);
