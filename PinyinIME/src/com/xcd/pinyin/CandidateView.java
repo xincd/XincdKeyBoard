@@ -713,6 +713,7 @@ public class CandidateView extends View {
         return true;
     }
 
+    int xDownRow,xDown;
     public boolean onTouchEventReal(MotionEvent event) {
         // The page in the background can also be touched.
         if (null == mDecInfo || !mDecInfo.pageReady(mPageNo)
@@ -721,7 +722,6 @@ public class CandidateView extends View {
         int x, y;
         x = (int) event.getX();
         y = (int) event.getY();
-        int XDownRow = (int) event.getRawX();
         if (mGestureDetector.onTouchEvent(event)) {
             mTimer.removeTimer();
             mBalloonHint.delayedDismiss(0);
@@ -742,6 +742,8 @@ public class CandidateView extends View {
             break;
 
         case MotionEvent.ACTION_DOWN:
+            xDownRow = (int) event.getRawX();
+            xDown = (int) event.getX();
             clickedItemInPage = mapToItemInPage(x, y);
             if (clickedItemInPage >= 0) {
                 showBalloon(clickedItemInPage, true);
@@ -777,17 +779,18 @@ public class CandidateView extends View {
                 mImeCandidateColor, desired_width, desired_height);
 
         getLocationOnScreen(mLocationTmp);
-        mHintPositionToInputView[0] = mLocationTmp[0]
-                + (int) (r.left - (mBalloonHint.getWidth() - desired_width) / 2);
-        mHintPositionToInputView[1] = -mBalloonHint.getHeight();
+//        mHintPositionToInputView[0] = (mLocationTmp[0]
+//                + (int) (r.left - (mBalloonHint.getWidth() - desired_width) / 2))-(xDownRow -xDown)+(mBalloonHint.getWidth()/2);
+//        mHintPositionToInputView[0] = mLocationTmp[0] - (int) (r.left - (mBalloonHint.getWidth() - desired_width) / 2);
+//        mHintPositionToInputView[1] = -mBalloonHint.getHeight();
 
         long delay = BalloonHint.TIME_DELAY_SHOW;
         if (!delayedShow) delay = 0;
         mBalloonHint.dismiss();
         if (!mBalloonHint.isShowing()) {
-            mBalloonHint.delayedShow(delay, mHintPositionToInputView);
+//            mBalloonHint.delayedShow(delay, mHintPositionToInputView);
         } else {
-            mBalloonHint.delayedUpdate(0, mHintPositionToInputView, -1, -1);
+//            mBalloonHint.delayedUpdate(0, mHintPositionToInputView, -1, -1);
         }
     }
 

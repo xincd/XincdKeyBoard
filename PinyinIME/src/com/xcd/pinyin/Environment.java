@@ -33,16 +33,18 @@ public class Environment {
     /**
      * The key height for portrait mode. It is relative to the screen height.
      */
-    private static final float KEY_HEIGHT_RATIO_PORTRAIT = 0.045f;
+    private static final float KEY_HEIGHT_RATIO_PORTRAIT = 0.04f;
 
-    private static final float KEY_WIDTH_RATIO_PORTRAIT = 0.6f;
+    private static final float KEY_WIDTH_RATIO_PORTRAIT = 0.45f;
+    
+    private static final float KEY_WIDTH_RATIO_LANDSCAPE = 0.25f;
     
     private static final float KEY_WIDTH_CANDIDATEDRAG = 0.1f;
 
     /**
      * The key height for landscape mode. It is relative to the screen height.
      */
-    private static final float KEY_HEIGHT_RATIO_LANDSCAPE = 0.06f;
+    private static final float KEY_HEIGHT_RATIO_LANDSCAPE = 0.05f;
 
     /**
      * The height of the candidates area for portrait mode. It is relative to
@@ -52,6 +54,7 @@ public class Environment {
     
     private static final float CANDIDATES_VIEW_HEIGHT_RATIO_PORTRAIT = 0.10f;//0.13f;
 
+    private static final float CANDIDATES_VIEW_HEIGHT_RATIO_LANDSCAPE = 0.15f;
     /**
      * The height of the candidates area for portrait mode. It is relative to
      * screen height.
@@ -142,15 +145,15 @@ public class Environment {
                 mFloatModePrentHeight = (int) (mScreenHeight * CANDIDATES_VIEW_HEIGHT_RATIO_PORTRAIT);
                 mCandidateDragViewWidht = (int)(mScreenWidth * KEY_WIDTH_CANDIDATEDRAG);
                 scale = mScreenWidth;
-                System.out.println("wanghui=====================11 onConfigurationChanged mKeyHeight:="+mKeyHeight);
             } else {
+                mSkbWidth = (int)(mScreenWidth * KEY_WIDTH_RATIO_LANDSCAPE);
                 mKeyHeight = (int) (mScreenHeight * KEY_HEIGHT_RATIO_LANDSCAPE);
                 mCandidatesAreaHeight = (int) (mScreenHeight * CANDIDATES_AREA_HEIGHT_RATIO_LANDSCAPE);
-                mFloatModePrentHeight = (int) (mScreenHeight * CANDIDATES_VIEW_HEIGHT_RATIO_PORTRAIT);
+                mFloatModePrentHeight = (int) (mScreenHeight * CANDIDATES_VIEW_HEIGHT_RATIO_LANDSCAPE);
                 mCandidateDragViewWidht = (int)(mScreenWidth * KEY_WIDTH_CANDIDATEDRAG);
                 scale = mScreenHeight;
-                System.out.println("wanghui=====================22 onConfigurationChanged mKeyHeight:="+mKeyHeight);
             }
+            System.out.println("wanghui=====================22 onConfigurationChanged mScreenWidth:="+mScreenWidth+"  mSkbWidth:="+mSkbWidth);
             mNormalKeyTextSize = (int) (scale * NORMAL_KEY_TEXT_SIZE_RATIO);
             mFunctionKeyTextSize = (int) (scale * FUNCTION_KEY_TEXT_SIZE_RATIO);
             mNormalBalloonTextSize = (int) (scale * NORMAL_BALLOON_TEXT_SIZE_RATIO);
